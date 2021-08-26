@@ -54,16 +54,6 @@ inoremap <silent> jj <esc>
 cnoremap <C-A> <Home>
 cnoremap <C-E> <End>
 
-" Swap 0 and ^
-nnoremap 0 ^
-nnoremap ^ 0
-nnoremap d0 d^
-nnoremap d^ d0
-nnoremap c0 c^
-nnoremap c^ c0
-nnoremap y0 y^
-nnoremap y^ y0
-
 " Most prefer to toggle search highlighting rather than clear the current
 " search results. To clear search highlighting rather than toggle it on
 nmap <silent> <leader>/ :set invhlsearch<CR>
@@ -139,4 +129,6 @@ let g:floaterm_keymap_toggle = '<F12>'
 
 call plug#end()
 
-colorscheme onedark
+if !empty(globpath(&rtp, 'colors/onedark.vim'))
+    colorscheme onedark
+endif
