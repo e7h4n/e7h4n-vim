@@ -8,6 +8,15 @@ e7h4n-vim is a distribution of plugins and configurations for Vim.
 curl https://raw.githubusercontent.com/e7h4n/e7h4n-vim/master/bootstrap.sh -L -o - | sh
 ```
 
+This will setup the configuration files in `~/.config/vim`, following the [XDG Base Directory Specification](https://specifications.freedesktop.org/basedir-spec/latest/) To be able to inform vim about this 'exotic' location (assuming the `$XDG_*` variables are configured in your shell), you need to setup the environment variable `$VIMINIT` as follows:
+
+```bash
+# XDG compliant setup for vim
+# Assuming you install your vim configuration under ~/.config/vim/vimrc as done
+# by default by Falkor's dotfiles -- see https://github.com/Falkor/dotfiles
+export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
+```
+
 ## Update
 
 ```bash
