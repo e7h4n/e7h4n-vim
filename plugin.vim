@@ -27,6 +27,11 @@ let g:airline_theme='onedark'
 " fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+let g:fzf_layout = { 'down': '7' }
+let g:fzf_preview_window = []
+autocmd! FileType fzf
+autocmd  FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 nnoremap <silent> <c-p> :Files <CR>
 nnoremap <leader>fm :History <cr>
 nnoremap <leader>fg :Rg <cr>
@@ -60,5 +65,9 @@ autocmd FileType javascript,c,cpp,java,html,ruby,css,less,python,bash,markdown,b
 " Undotree
 Plug 'mbbill/undotree'
 nnoremap <silent> <leader>u :UndotreeToggle<cr>
+
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'mattn/vim-lsp-settings'
 
 call plug#end()
