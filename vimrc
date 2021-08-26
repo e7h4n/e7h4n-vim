@@ -58,6 +58,7 @@ cnoremap <C-E> <End>
 " search results. To clear search highlighting rather than toggle it on
 nmap <silent> <leader>/ :set invhlsearch<CR>
 
+let &runtimepath.=',$HOME/.local/share/vim'
 call plug#begin('~/.local/share/vim/plugged')
 
 Plug 'airblade/vim-gitgutter'

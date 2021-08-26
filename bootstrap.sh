@@ -92,7 +92,7 @@ sync_repo() {
 }
 
 install() {
-    curl -fLo ~/.local/share/vim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    curl -fLo ~/.local/share/vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     vim +PlugInstall! +PlugClean +qall!
 }
 
