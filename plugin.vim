@@ -11,6 +11,7 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-surround'
 Plug 'vim-scripts/lastpos.vim'
 Plug 'wellle/targets.vim'
 Plug 'wincent/terminus'
@@ -29,9 +30,9 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 let g:fzf_layout = { 'down': '7' }
 let g:fzf_preview_window = []
-autocmd! FileType fzf
-autocmd  FileType fzf set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, {'options': ['--info=inline']} , <bang>0)
+command! -bang History call fzf#vim#history({'options': ['--info=inline']}, <bang>0)
+command! -bang -nargs=? Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case -- ".shellescape(<q-args>), 1, {'options': ['--info=inline']}, <bang>0)
 nnoremap <silent> <c-p> :Files <CR>
 nnoremap <leader>fm :History <cr>
 nnoremap <leader>fg :Rg <cr>

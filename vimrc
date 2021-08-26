@@ -39,8 +39,9 @@ set softtabstop=4                                  " Let backspace delete indent
 set tabstop=4                                      " An indentation every four columns
 
 " Mappings
-" leader key
-let mapleader = ','
+
+" term, use <leader>sh to open terminal
+nnoremap <silent> <leader>sh :term ++rows=10<CR>
 
 " Yank from the cursor to the end of the line, to be consistent with C and D.
 nnoremap Y y$

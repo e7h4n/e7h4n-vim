@@ -52,11 +52,11 @@ vim +PlugUpgrade +PlugUpdate +PlugClean +q
 ### Keymap
 
 * use `jj` as `<ESC>`.
-* use `,` as `<Leader>`.
 * make `Y` as `y$` to be consistent with C and D.
 * `gp` and `gP` to paste yank register.
 * `<C-A>` and `<C-E>` implement emacs style command line cursor movement.
 * `<leader>/` to toggle highlight search.
+* `<leader>sh` to open terminal.
 
 ## Plugins
 
