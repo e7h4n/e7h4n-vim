@@ -67,8 +67,4 @@ autocmd FileType javascript,c,cpp,java,html,ruby,css,less,python,bash,markdown,b
 Plug 'mbbill/undotree'
 nnoremap <silent> <leader>u :UndotreeToggle<cr>
 
-Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'mattn/vim-lsp-settings'
-
 call plug#end()
