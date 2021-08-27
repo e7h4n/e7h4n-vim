@@ -20,10 +20,13 @@ Plug 'wincent/terminus'
 Plug 'preservim/nerdtree'
 nnoremap <leader>nt :NERDTreeFind<CR>
 
-" Airline
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-let g:airline_theme='onedark'
+" Lightline
+Plug 'itchyny/lightline.vim'
+set laststatus=2
+set noshowmode
+let g:lightline = {
+      \ 'colorscheme': 'onedark',
+      \ }
 
 " fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
