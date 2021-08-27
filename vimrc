@@ -73,7 +73,7 @@ let g:strip_whitelines_at_eof=1
 
 " Undotree
 Plug 'mbbill/undotree'
-nnoremap <silent> <leader>u :UndotreeToggle<cr>
+nnoremap <silent> <leader>u :UndotreeShow<cr>
 
 Plug 'wincent/terminus'
 let g:TerminusMouse=0
