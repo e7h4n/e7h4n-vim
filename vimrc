@@ -17,7 +17,6 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/lastpos.vim'
 Plug 'wellle/targets.vim'
-Plug 'wincent/terminus'
 
 " NERDTree
 Plug 'preservim/nerdtree'
@@ -67,11 +66,17 @@ endif
 
 " Better Whitespace
 Plug 'ntpeters/vim-better-whitespace'
-autocmd FileType javascript,c,cpp,java,html,ruby,css,less,python,bash,markdown,beancount EnableStripWhitespaceOnSave
+let g:better_whitespace_ctermcolor='yellow'
+let g:strip_whitespace_confirm=0
+let g:strip_whitespace_on_save=1
+let g:strip_whitelines_at_eof=1
 
 " Undotree
 Plug 'mbbill/undotree'
 nnoremap <silent> <leader>u :UndotreeToggle<cr>
+
+Plug 'wincent/terminus'
+let g:TerminusMouse=0
 
 call plug#end()
 
