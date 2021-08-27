@@ -1,4 +1,4 @@
-let &runtimepath.=',$HOME/.local/share/vim' # load vim-plug
+let &runtimepath.=',$HOME/.local/share/vim'
 
 call plug#begin('~/.local/share/vim/plugged')
 
