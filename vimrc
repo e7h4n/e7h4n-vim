@@ -1,68 +1,79 @@
-let &runtimepath.=',$HOME/.local/share/vim'
+let &runtimepath.=',$HOME/.local/share/vim' # load vim-plug
 
-" General
-filetype plugin indent on                          " Automatically detect file types.
-syntax on                                          " Syntax highlighting
-scriptencoding utf-8
+call plug#begin('~/.local/share/vim/plugged')
 
-set autoindent                                     " Indent at the same level of the previous line
-set hidden                                         " Allow buffer switching without saving
-set ignorecase                                     " Case insensitive search
-set iskeyword-=#                                   " '#' is an end of word designator
-set iskeyword-=-                                   " '-' is an end of word designator
-set iskeyword-=.                                   " '.' is an end of word designator
-set nojoinspaces                                   " Prevents inserting two spaces after punctuation on a join (J)
-set noswapfile
-set signcolumn=yes
-set smartcase                                      " Case sensitive when uc present
-set splitbelow                                     " Puts new split windows to the bottom of the current
-set splitright                                     " Puts new vsplit windows to the right of the current
-set timeoutlen=300
-set ttimeoutlen=0
-set undofile
-set undodir=~/.local/share/vim/undo
-set virtualedit=onemore                            " Allow for cursor beyond last character
-set wildignore+=node_modules,*-target,target,tmp_*
-set wildignorecase
-set wildmode=list:longest,full                     " Command <Tab> completion, list matches, then longest common part, then all.
+Plug 'airblade/vim-gitgutter'
+Plug 'e7h4n/vim-conf'
+Plug 'godlygeek/tabular'
+Plug 'mbbill/fencview'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'nathangrigg/vim-beancount'
+Plug 'rhysd/conflict-marker.vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-surround'
+Plug 'vim-scripts/lastpos.vim'
+Plug 'wellle/targets.vim'
+Plug 'wincent/terminus'
 
-" UI
-set cursorline                                     " Highlight current line
-set list                                           " Display specified blank characters
-set relativenumber                                 " Line numbers on
-set showmatch                                      " Show matching brackets/parenthesis
+" NERDTree
+Plug 'preservim/nerdtree'
+nnoremap <leader>nt :NERDTreeFind<CR>
 
-" Formatting
-set expandtab                                      " Tabs are spaces, not tabs
-set shiftwidth=4                                   " Use indents of 4 spaces
-set softtabstop=4                                  " Let backspace delete indent
-set tabstop=4                                      " An indentation every four columns
+" Lightline
+Plug 'itchyny/lightline.vim'
+set laststatus=2
+set noshowmode
+let g:lightline = {
+      \ 'colorscheme': 'onedark',
+      \ }
 
-" Mappings
+" fzf
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+let g:fzf_layout = { 'down': '7' }
+let g:fzf_preview_window = []
+command! -bang -nargs=? -complete=dir Files call fzf#vim#files(<q-args>, {'options': ['--info=inline']} , <bang>0)
+command! -bang History call fzf#vim#history({'options': ['--info=inline']}, <bang>0)
+command! -bang -nargs=? Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case -- ".shellescape(<q-args>), 1, {'options': ['--info=inline']}, <bang>0)
+nnoremap <silent> <c-p> :Files <CR>
+nnoremap <leader>fm :History <cr>
+nnoremap <leader>fg :Rg <cr>
 
-" term, use <leader>sh to open terminal
-nnoremap <silent> <leader>sh :term ++rows=10<CR>
+" BufExplorer
+Plug 'jlanzarotta/bufexplorer'
+map <space> :BufExplorer<cr>
 
-" Yank from the cursor to the end of the line, to be consistent with C and D.
-nnoremap Y y$
+" Onedark theme
+Plug 'joshdick/onedark.vim'
+"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
+"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+if (empty($TMUX))
+    if (has("nvim"))
+        "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+        let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+    endif
+    "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+    "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+    " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+    if (has("termguicolors"))
+        set termguicolors
+    endif
+endif
 
-" Paste yank register
-nmap gp "0p
-nmap gP "0P
+" Better Whitespace
+Plug 'ntpeters/vim-better-whitespace'
+autocmd FileType javascript,c,cpp,java,html,ruby,css,less,python,bash,markdown,beancount EnableStripWhitespaceOnSave
 
-" map double j to <esc>
-inoremap <silent> jj <esc>
+" Undotree
+Plug 'mbbill/undotree'
+nnoremap <silent> <leader>u :UndotreeToggle<cr>
 
-" Emacs style course movement under command mode
-cnoremap <C-A> <Home>
-cnoremap <C-E> <End>
-
-" Most prefer to toggle search highlighting rather than clear the current
-" search results. To clear search highlighting rather than toggle it on
-nmap <silent> <leader>/ :set invhlsearch<CR>
-
-" Load plugins
-source $HOME/.config/vim/plugin.vim
+call plug#end()
 
 if !empty(globpath(&rtp, 'colors/onedark.vim'))
     colorscheme onedark
