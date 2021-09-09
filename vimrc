@@ -66,17 +66,34 @@ endif
 
 " Better Whitespace
 Plug 'ntpeters/vim-better-whitespace'
+let g:better_whitespace_filetypes_blacklist=['<filetype1>', '<filetype2>', '<etc>']
 let g:better_whitespace_ctermcolor='yellow'
 let g:strip_whitespace_confirm=0
 let g:strip_whitespace_on_save=1
 let g:strip_whitelines_at_eof=1
+autocmd TerminalOpen * DisableWhitespace
+autocmd TerminalOpen * set nonu
+autocmd TerminalOpen * set signcolumn=no
 
 " Undotree
 Plug 'mbbill/undotree'
 nnoremap <silent> <leader>u :UndotreeShow<cr>
 
+" Terminus
 Plug 'wincent/terminus'
 let g:TerminusMouse=0
+
+" LSP
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+let g:lsp_diagnostics_echo_cursor = 1
+
+" Test
+Plug 'vim-test/vim-test'
+let test#strategy = 'vimterminal'
+nmap <silent> <leader>tt :TestSuite<CR>
 
 call plug#end()
 
