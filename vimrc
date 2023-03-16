@@ -4,6 +4,7 @@ call plug#begin('~/.local/share/vim/plugged')
 
 Plug 'airblade/vim-gitgutter'
 Plug 'e7h4n/vim-conf'
+Plug 'e7h4n/e7h4n-beancount-vim'
 Plug 'godlygeek/tabular'
 Plug 'mbbill/fencview'
 Plug 'nathanaelkane/vim-indent-guides'
