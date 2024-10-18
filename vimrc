@@ -18,6 +18,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/lastpos.vim'
 Plug 'wellle/targets.vim'
+Plug 'jmcantrell/vim-virtualenv'
 
 " NERDTree
 Plug 'preservim/nerdtree'
